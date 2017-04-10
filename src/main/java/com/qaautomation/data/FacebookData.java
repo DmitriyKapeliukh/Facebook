@@ -14,4 +14,13 @@ public class FacebookData{
                     {"www.yahoo.com", "Yahoo"}
             };
         }
+
+        @DataProvider(name = "login")
+        public static Object[][] login(){
+            return new Object[][]{
+                    {"mr.auto.qa@gmail.com", "mrautoqa12345", null},
+                    {"sdfsfs", "12345"}
+            };
+
+        }
 }
