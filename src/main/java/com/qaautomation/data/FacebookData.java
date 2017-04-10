@@ -19,7 +19,7 @@ public class FacebookData{
         public static Object[][] login(){
             return new Object[][]{
                     {"mr.auto.qa@gmail.com", "mrautoqa12345", null},
-                    {"sdfsfs", "12345"}
+                    {"adasda", "12345", "Вы ввели неверный пароль. Забыли пароль?"}
             };
 
         }
