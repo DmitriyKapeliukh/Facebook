@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Login Test">
+    <test name="P1 Test">
+        <groups>
+            <run>
+                <include name="p1"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.facebook.tests.Login_Test_DataProvider"/>
+        </classes>
+    </test>
+    <test name="P2 Test">
+        <groups>
+            <run>
+                <include name="p2"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.facebook.tests.Login_Test_DataProvider">
+                <methods>
+                    <exclude name="fillOutPassFld"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
