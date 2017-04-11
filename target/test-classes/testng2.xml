@@ -8,7 +8,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.facebook.tests.Login_Test_DataProvider"/>
+            <class name="com.facebook.tests.LoginTestDataProvider"/>
         </classes>
     </test>
     <test name="P2 Test">
@@ -18,7 +18,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.facebook.tests.Login_Test_DataProvider">
+            <class name="com.facebook.tests.LoginTestDataProvider">
                 <methods>
                     <exclude name="fillOutPassFld"/>
                 </methods>
