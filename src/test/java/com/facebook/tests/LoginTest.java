@@ -1,27 +1,22 @@
 package com.facebook.tests;
 
-import com.gargoylesoftware.htmlunit.util.StringUtils;
 import com.qaautomation.data.FacebookData;
 import com.qaautomation.pages.FacebookLoginPage;
 import com.qaautomation.pages.FacebookMainFeed;
 import com.qaautomation.pages.FacebookMainPage;
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.apache.commons.lang3.StringUtils.*;
 
 /**
  * Created by Dmytro_Kapeliukh on 4/8/17.
  */
-public class Login_Test {
+public class LoginTest {
     public WebDriver driver;
     FacebookMainPage fbMainPage;
     FacebookLoginPage fbLoginPage;
@@ -67,7 +62,7 @@ public class Login_Test {
         fbMainPage.setTextPasswordLogin(password);
         fbMainPage.clickLoginMain();
 
-        if (!org.apache.commons.lang3.StringUtils.isBlank(isError)) {
+        if (!StringUtils.isBlank(isError)) {
             boolean result = fbLoginPage.checkErrorHeader(isError);
             Assert.assertTrue(result, "Expected error: " + isError);
         } else {

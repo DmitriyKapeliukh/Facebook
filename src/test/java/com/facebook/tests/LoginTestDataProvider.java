@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Dmytro_Kapeliukh on 4/9/17.
  */
-public class Login_Test_DataProvider {
+public class LoginTestDataProvider {
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)

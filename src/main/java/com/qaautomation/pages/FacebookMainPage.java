@@ -1,10 +1,9 @@
 package com.qaautomation.pages;
 
-import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 /**
  * Created by Dmytro_Kapeliukh on 4/9/17.
@@ -22,6 +21,18 @@ public class FacebookMainPage {
 
     @FindBy(id = "u_0_q")
     WebElement buttonLogin;
+
+    @FindBy(name = "firstname")
+    WebElement filedFirstNameSignUp;
+
+    @FindBy(name = "lastname")
+    WebElement fieldLastNameSignUp;
+
+    @FindBy(name = "reg_email__")
+    WebElement fieldEmailMobileSignUp;
+
+    @FindBy(name = "reg_passwd__")
+    WebElement fieldPasswordSignUp;
 
 /*    String fieldEmailLogin = "#email";
     String filedPasswordLogin = "#pass";*/
@@ -47,5 +58,25 @@ public class FacebookMainPage {
 
     public void clickLoginMain(){
         buttonLogin.click();
+    }
+
+    public void setTextFirstNameField(String text){
+        filedFirstNameSignUp.sendKeys(text);
+        Assert.assertEquals(filedFirstNameSignUp.getAttribute("value"), text);
+    }
+
+    public void setTextLastNameField(String text){
+        fieldLastNameSignUp.sendKeys(text);
+        Assert.assertEquals(fieldLastNameSignUp.getAttribute("value"), text);
+    }
+
+    public void setTextEmailMobileField(String text){
+        fieldEmailMobileSignUp.sendKeys(text);
+        Assert.assertEquals(fieldEmailMobileSignUp.getAttribute("value"), text);
+    }
+
+    public void setTextPasswordField(String text){
+        fieldPasswordSignUp.sendKeys(text);
+        Assert.assertEquals(fieldPasswordSignUp.getAttribute("value"), text);
     }
 }
