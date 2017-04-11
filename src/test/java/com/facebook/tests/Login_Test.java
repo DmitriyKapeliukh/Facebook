@@ -3,6 +3,7 @@ package com.facebook.tests;
 import com.gargoylesoftware.htmlunit.util.StringUtils;
 import com.qaautomation.data.FacebookData;
 import com.qaautomation.pages.FacebookLoginPage;
+import com.qaautomation.pages.FacebookMainFeed;
 import com.qaautomation.pages.FacebookMainPage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -15,7 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.apache.commons.*;
+import org.apache.commons.lang3.StringUtils.*;
 
 /**
  * Created by Dmytro_Kapeliukh on 4/8/17.
@@ -24,6 +25,7 @@ public class Login_Test {
     public WebDriver driver;
     FacebookMainPage fbMainPage;
     FacebookLoginPage fbLoginPage;
+    FacebookMainFeed fbMainFeed;
 
     @BeforeClass (alwaysRun = true)
     public void setup() {
@@ -31,6 +33,7 @@ public class Login_Test {
         //fbMainPage = new FacebookMainPage(driver);
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
         fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class);
+        fbMainFeed = PageFactory.initElements(driver, FacebookMainFeed.class);
     }
 
     @AfterClass (alwaysRun = true)
@@ -56,14 +59,19 @@ public class Login_Test {
     }
 
     @Test(groups = {"p1"}, dataProviderClass = FacebookData.class, dataProvider = "login")
-    public void testLoginMainPage(String email, String password, String errorType){
+    public void testLoginMainPage(String email, String password, String isError) {
+        driver.manage().deleteAllCookies();
         driver.get(fbMainPage.PAGE_URL);
         Assert.assertEquals(driver.getTitle(), fbMainPage.PAGE_TITLE);
         fbMainPage.setTextEmailLogin(email);
         fbMainPage.setTextPasswordLogin(password);
         fbMainPage.clickLoginMain();
 
-        if (StringUtils.isBlank)
-        Assert.assertEquals(driver.getTitle(), "Facebook");
+        if (!org.apache.commons.lang3.StringUtils.isBlank(isError)) {
+            boolean result = fbLoginPage.checkErrorHeader(isError);
+            Assert.assertTrue(result, "Expected error: " + isError);
+        } else {
+            Assert.assertTrue(!fbMainFeed.getUserNameText().isEmpty());
+        }
     }
 }
