@@ -1,24 +1,21 @@
 package com.qaautomation.pages;
 
+import com.qaautomation.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 /**
  * Created by Dmytro_Kapeliukh on 4/9/17.
  */
-public class FacebookMainPage {
-
-    public static final String PAGE_TITLE = "Добро пожаловать на Фейсбук - заходите, регистрируйтесь и находите друзей.";
-    public static final String PAGE_URL = "https://www.facebook.com";
+public class FacebookMainPage extends BasePage{
 
     @FindBy(id = "email")
     WebElement fieldEmailLogin;
 
     @FindBy(id = "pass")
-    WebElement filedPasswordLogin;
+    WebElement fieldPasswordLogin;
 
     @FindBy(id = "u_0_q")
     WebElement buttonLogin;
@@ -47,30 +44,28 @@ public class FacebookMainPage {
     @FindBy(id = "year")
     WebElement dropdownYear;
 
-    /*    String fieldEmailLogin = "#email";
-    String filedPasswordLogin = "#pass";*/
-    WebDriver driver;
+    @FindBy(css = "#u_0_h")
+    WebElement radioMale;
+
+    @FindBy(css = "#u_0_l")
+    WebElement buttonSignUp;
 
     public FacebookMainPage(WebDriver driver){
-        this.driver = driver;
+        super(driver);
+        this.PAGE_TITLE = "Добро пожаловать на Фейсбук - заходите, регистрируйтесь и находите друзей.";
+        this.PAGE_URL = "https://www.facebook.com";
     }
 
     public void setTextEmailLogin (String text){
-        //WebElement element = driver.findElement(By.cssSelector(fieldEmailLogin));
-        //element.sendKeys(text);
-        fieldEmailLogin.sendKeys(text);
-        Assert.assertEquals(fieldEmailLogin.getAttribute("value"), text);
+        setElementText(fieldEmailLogin, text);
     }
 
     public void setTextPasswordLogin (String text){
-        //WebElement element = driver.findElement(By.cssSelector(filedPasswordLogin));
-        //element.sendKeys(text);
-        filedPasswordLogin.sendKeys(text);
-        Assert.assertEquals(filedPasswordLogin.getAttribute("value"), text);
+        setElementText(fieldPasswordLogin, text);
     }
 
     public void clickLoginMain(){
-        buttonLogin.click();
+        clickElement(buttonLogin);
     }
 
     public void setTextFirstNameField(String text){
@@ -99,17 +94,28 @@ public class FacebookMainPage {
     }
 
     public void selectDay(String value){
-        Select select = new Select(dropdownDay);
-        select.selectByValue(value);
+        selectValueInDropDown(dropdownDay, value);
+/*        Select select = new Select(dropdownDay);
+        select.selectByValue(value);*/
     }
 
     public void selectMonth(String value){
-        Select select = new Select(dropdownMonth);
-        select.selectByValue(value);
+        selectValueInDropDown(dropdownMonth, value);
+/*        Select select = new Select(dropdownMonth);
+        select.selectByValue(value);*/
     }
 
     public void selectYear(String value){
-        Select select = new Select(dropdownYear);
-        select.selectByValue(value);
+        selectValueInDropDown(dropdownYear, value);
+/*        Select select = new Select(dropdownYear);
+        select.selectByValue(value);*/
+    }
+
+    public void clickRadioMale(){
+        clickElement(radioMale);
+    }
+
+    public void clickSignUpButton(){
+        clickElement(buttonSignUp);
     }
 }
