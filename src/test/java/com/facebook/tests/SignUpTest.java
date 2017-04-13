@@ -22,8 +22,8 @@ public class SignUpTest {
     @BeforeClass(alwaysRun = true)
     public void setup(){
         this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 5); //explicitly wait
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //implicitly wait
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
     }
 
