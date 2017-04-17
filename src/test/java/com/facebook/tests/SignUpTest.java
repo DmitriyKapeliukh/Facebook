@@ -36,7 +36,6 @@ public class SignUpTest {
     @Test(groups = "p1")
     public void testSignUpMainPage(){
         driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
 
         fbMainPage.loadPage();
         fbMainPage.setTextFirstNameField("QA");
