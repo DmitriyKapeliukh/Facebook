@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
@@ -36,10 +37,18 @@ public class LoginTest {
         Thread.sleep(3000L);
         this.driver.quit();
     }
-
+    @Parameters({"language", "browserType"})
     @Test (groups = {"p1", "pageLoad"})
-    public void loadPage() {
-        fbMainPage.loadPage();
+    public void loadPage(String language, String browserType) {
+        try {
+            fbMainPage.loadPage();
+        }catch (Exception e){
+            System.out.println("This page failed to load "+e.getMessage());
+        }finally {
+            driver.navigate().refresh();
+        }
+        System.out.println("Language: "+language);
+        System.out.println("Browser: "+browserType);
     }
 
     @Test(groups = {"p2", "field"}, dependsOnMethods = "loadPage")
@@ -54,7 +63,6 @@ public class LoginTest {
 
     @Test(groups = {"p1"}, dataProviderClass = FacebookData.class, dataProvider = "login")
     public void testLoginMainPage(String email, String password, String isError) {
-        driver.manage().deleteAllCookies();
         fbMainPage.loadPage();
         fbMainPage.login(email, password);
 

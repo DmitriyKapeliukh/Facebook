@@ -1,15 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
         
-        <suite name="Login Tests" parallel="classes" thread-count="2">
+<suite name="Login Tests" parallel="classes" thread-count="1">
     <test name="Test 1">
+        <parameter name="language" value="en"/>
+        <parameter name="browserType" value="chrome"/>
         <classes>
             <class name="com.facebook.tests.LoginTest">
-            </class>
-        </classes>
-    </test>
-    <test name="Test 2">
-        <classes>
-            <class name="com.facebook.tests.SignUpTest">
             </class>
         </classes>
     </test>
