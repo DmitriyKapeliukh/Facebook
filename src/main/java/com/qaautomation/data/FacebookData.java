@@ -21,6 +21,14 @@ public class FacebookData{
                     {"mr.auto.qa@gmail.com", "mrautoqa12345", null},
                     {"adasda", "12345", "Вы ввели неверный пароль. Забыли пароль?"}
             };
-
         }
+
+    @DataProvider(name = "signup")
+    public static Object[][] signup(){
+        return new Object[][]{
+                {"QA", "Automan", "mr.auto.qa@gmail.com"},
+                {"$%^&", "%^&**((", "mr.auto.qa@gmail.com"},
+                {"131231", "42424323", "mr.auto.qa@gmail.com"}
+        };
+    }
 }

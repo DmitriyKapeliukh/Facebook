@@ -4,15 +4,17 @@ import com.qaautomation.data.FacebookData;
 import com.qaautomation.pages.FacebookLoginPage;
 import com.qaautomation.pages.FacebookMainFeed;
 import com.qaautomation.pages.FacebookMainPage;
+import com.qaautomation.utilites.DriverFactory;
+import junitx.util.PropertyManager;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import static com.qaautomation.utilites.DriverFactory.*;
+import static org.openqa.selenium.support.PageFactory.*;
+import static org.testng.Assert.*;
 
 /**
  * Created by Dmytro_Kapeliukh on 4/8/17.
@@ -25,11 +27,11 @@ public class LoginTest {
 
     @BeforeClass (alwaysRun = true)
     public void setup() {
-        this.driver = new FirefoxDriver();
+        this.driver = getWebDriver(DriverFactory.getBrowserTypeByProperty());
         //fbMainPage = new FacebookMainPage(driver);
-        fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
-        fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class);
-        fbMainFeed = PageFactory.initElements(driver, FacebookMainFeed.class);
+        fbMainPage = initElements(driver, FacebookMainPage.class);
+        fbLoginPage = initElements(driver, FacebookLoginPage.class);
+        fbMainFeed = initElements(driver, FacebookMainFeed.class);
     }
 
     @AfterClass (alwaysRun = true)
@@ -37,17 +39,10 @@ public class LoginTest {
         Thread.sleep(3000L);
         this.driver.quit();
     }
-    @Parameters({"language", "browserType"})
+    @Parameters({"browserType"})
     @Test (groups = {"p1", "pageLoad"})
-    public void loadPage(String language, String browserType) {
-        try {
-            fbMainPage.loadPage();
-        }catch (Exception e){
-            System.out.println("This page failed to load "+e.getMessage());
-        }finally {
-            driver.navigate().refresh();
-        }
-        System.out.println("Language: "+language);
+    public void loadPage(@Optional("Firefox") String browserType) {
+        fbMainPage.loadPage();
         System.out.println("Browser: "+browserType);
     }
 
@@ -68,9 +63,9 @@ public class LoginTest {
 
         if (!StringUtils.isBlank(isError)) {
             boolean result = fbLoginPage.checkErrorHeader(isError);
-            Assert.assertTrue(result, "Expected error: " + isError);
+            assertTrue(result, "Expected error: " + isError);
         } else {
-            Assert.assertTrue(!fbMainFeed.getUserNameText().isEmpty());
+            assertTrue(!fbMainFeed.getUserNameText().isEmpty());
         }
     }
 }

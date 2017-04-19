@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.*;
+
 /**
  * Created by Dmytro_Kapeliukh on 4/11/2017.
  */
@@ -29,7 +31,7 @@ public class SignUpTest {
 
     @AfterClass(alwaysRun = true)
     public void teardown() throws InterruptedException {
-        Thread.sleep(6000L);
+        sleep(6000L);
         this.driver.quit();
     }
 
