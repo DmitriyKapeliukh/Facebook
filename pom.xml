@@ -30,10 +30,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
         </dependency>
+
         <dependency>
             <groupId>junit-addons</groupId>
             <artifactId>junit-addons</artifactId>
             <version>1.4</version>
+
         </dependency>
     </dependencies>
     <dependencyManagement>

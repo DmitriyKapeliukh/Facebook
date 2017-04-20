@@ -5,16 +5,13 @@ import com.qaautomation.pages.FacebookLoginPage;
 import com.qaautomation.pages.FacebookMainFeed;
 import com.qaautomation.pages.FacebookMainPage;
 import com.qaautomation.utilites.DriverFactory;
-import junitx.util.PropertyManager;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.*;
-import static com.qaautomation.utilites.DriverFactory.*;
-import static org.openqa.selenium.support.PageFactory.*;
-import static org.testng.Assert.*;
+
+import static com.qaautomation.utilites.DriverFactory.getWebDriver;
+import static org.openqa.selenium.support.PageFactory.initElements;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Dmytro_Kapeliukh on 4/8/17.
